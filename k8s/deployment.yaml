@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-workflow-system
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ai-workflow-system
+  template:
+    metadata:
+      labels:
+        app: ai-workflow-system
+    spec:
+      containers:
+      - name: go-service
+        image: go-service:latest
+        ports:
+        - containerPort: 8080
+      - name: python-service
+        image: python-service:latest
+        ports:
+        - containerPort: 5000
